@@ -10,13 +10,24 @@ services:
     container_name: app_v2
     expose:
       - "3000"
-  nginx:
-    image: nginx:alpine
-    container_name: nginx-server
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: nginx-server
+  #   ports:
+  #     - "3003:3003"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+  #   depends_on:
+  #     - app1
+  #     - app2
+
+  haproxy:
+    image: haproxy:alpine
+    container_name: haproxy-server
     ports:
       - "3003:3003"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     depends_on:
       - app1
       - app2

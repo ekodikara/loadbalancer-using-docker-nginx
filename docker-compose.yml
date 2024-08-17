@@ -1,0 +1,22 @@
+
+services:
+  app1:
+    image: my-app:img1.0
+    container_name: app_v1
+    expose:
+      - "3000"
+  app2:
+    image: my-app:img2.0
+    container_name: app_v2
+    expose:
+      - "3000"
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-server
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      - app1
+      - app2

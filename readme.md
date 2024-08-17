@@ -41,4 +41,18 @@ docker compose stop app1 (assume app1 need to upgrade, app1 is the service name 
 
     docker compose down --remove-orphans 
 
+## `Alternative way with HAProxy`
+
+To see the HAProxy configuration instead of Nginx, please switch to the `haproxy` branch.
+
+    git checkout haproxy
+
+Stop one of the server and then run this.
+
+    docker compose stop app1
+
+After change the servers from the HAProxy config do this.
+    
+    docker exec haproxy-server haproxy -f /usr/local/etc/haproxy/haproxy.cfg -sf $(pgrep haproxy)
+
 Have fun!

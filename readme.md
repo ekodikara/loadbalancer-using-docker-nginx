@@ -1,9 +1,11 @@
 # ZERO downtime with Docker & Nginx:
 
-## Build Docker Images
+## Build Docker Images (obsolete, docker compose build will handle this)
 
     docker build -t my-app:1.0 .
     docker build -t my-app:2.0 .
+    or
+    docker compose build
 
 container names or above are app_v1 and app_v2 as servers in nginx
 
@@ -29,7 +31,7 @@ docker compose stop app1 (assume app1 need to upgrade, app1 is the service name 
 
     upstream app {
         # Remove the old version
-        # server app_v1:3000;  
+        server app_v1:3000;  
         server app_v2:3000;  # New version
     }
 

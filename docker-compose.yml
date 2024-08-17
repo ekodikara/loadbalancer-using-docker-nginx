@@ -1,15 +1,36 @@
 
 services:
   app1:
-    image: my-app:img1.0
-    container_name: app_v1
-    expose:
-      - "3000"
+      build:
+        context: ./app
+        dockerfile: Dockerfile
+      image: my-app:img1.0
+      container_name: app_v1
+      ports:
+        - "3000:3000"
+      expose:
+       - "3000"
   app2:
-    image: my-app:img2.0
-    container_name: app_v2
-    expose:
-      - "3000"
+      build:
+        context: ./app
+        dockerfile: Dockerfile
+      image: my-app:img2.0
+      container_name: app_v2
+      ports:
+        - "3001:3000"
+      expose:
+       - "3000"
+  # app1:
+  #   build: .
+  #   image: my-app:img1.0
+  #   container_name: app_v1
+  #   expose:
+  #     - "3000"
+  # app2:
+  #   image: my-app:img2.0
+  #   container_name: app_v2
+  #   expose:
+  #     - "3000"
   nginx:
     image: nginx:alpine
     container_name: nginx-server
